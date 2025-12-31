@@ -2,6 +2,8 @@
 
 一个基于yt-dlp和ffmpeg的图形界面音视频下载器，支持多种视频平台和播放列表。
 
+不是我说白了，你git下去的有问题，ffmpeg太大了放不进来啊，我还得打包。完整文件全部放到版本发布（释放）了。
+
 ## 功能特点
 
 - 支持多种视频平台（YouTube、Bilibili等）和播放列表
@@ -71,3 +73,4 @@ pyinstaller build.spec
 - Python 3.8+
 - Tkinter（Python标准库）
 - pyinstaller（用于打包）
+
