@@ -36,7 +36,7 @@ pyinstaller --onefile --windowed --name="音视频下载器" main.py --add-binar
 或使用spec文件编译：
 
 ```bash
-pyinstaller build.spec
+pyinstaller --noconfirm --clean ytd.spec
 ```
 
 ## 使用说明
@@ -71,3 +71,4 @@ pyinstaller build.spec
 - Python 3.8+
 - Tkinter（Python标准库）
 - pyinstaller（用于打包）
+
