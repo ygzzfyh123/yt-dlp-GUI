@@ -16,5 +16,9 @@ if (!(Test-Path ".\\yt-dlp.exe")) {
   throw "Missing .\\yt-dlp.exe (place it next to $Spec)"
 }
 
+if (!(Test-Path ".\\deno.exe")) {
+  throw "Missing .\\deno.exe (place it next to $Spec)"
+}
+
 pyinstaller --noconfirm --clean $Spec
 

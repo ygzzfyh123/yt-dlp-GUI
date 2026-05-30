@@ -1,13 +1,21 @@
 # -*- mode: python ; coding: utf-8 -*-
 import os
 import sys
-from PyInstaller.utils.hooks import collect_submodules
+from PyInstaller.utils.hooks import collect_submodules, collect_data_files
 
 block_cipher = None
 
-hiddenimports = collect_submodules("tkinter")
+hiddenimports = (
+    collect_submodules("tkinter")
+    + collect_submodules("playwright")
+    + ["greenlet", "pyee", "pyee.base"]
+)
 
 _HERE = globals().get("SPECPATH") or os.getcwd()
+
+import importlib
+_pw_pkg = os.path.dirname(importlib.import_module("playwright").__file__)
+_pw_driver = os.path.join(_pw_pkg, "driver")
 
 a = Analysis(
     ["main.py"],
@@ -15,8 +23,11 @@ a = Analysis(
     binaries=[
         (os.path.join(_HERE, "ffmpeg.exe"), "."),
         (os.path.join(_HERE, "yt-dlp.exe"), "."),
+        (os.path.join(_HERE, "deno.exe"), "."),
     ],
-    datas=[],
+    datas=[
+        (_pw_driver, os.path.join("playwright", "driver")),
+    ],
     hiddenimports=hiddenimports,
     hookspath=[],
     hooksconfig={},
@@ -42,6 +53,7 @@ exe = EXE(
     bootloader_ignore_signals=False,
     strip=False,
     upx=True,
+    upx_exclude=["node.exe"],
     console=False,
     disable_windowed_traceback=False,
     argv_emulation=False,

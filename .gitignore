@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+build/
+dist/
+*.exe
+*.zip
+douyin-downloader-main/
+_test_pw.py
